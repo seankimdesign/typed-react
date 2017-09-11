@@ -10,7 +10,11 @@
     "rules": {
 	  "semicolon": [true, "never"],
 	  "interface-name": [true, "never-prefix"],
-	  "one-line": [true, "check-catch", "check-finally", "check-else", "check-open-brace"]
+	  "indent": [true, "tabs"],
+	  "one-line": [true, "check-catch", "check-finally", "check-else", "check-open-brace"],
+	  "trailing-comma": false,
+	  "object-literal-sort-keys": false,
+	  "ordered-imports": false
 	},
   "rulesDirectory": []
 }
