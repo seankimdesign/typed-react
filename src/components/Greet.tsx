@@ -1,16 +1,15 @@
 import * as React from "react"
 
 export interface Greeter{
-    compiler: string,
+    compiler: string
     framework: string
 }
 
 /** @augments {React.Component<object, object>} */
 export class Greet extends React.Component<Greeter, undefined>{
-    render(){
+    public render() {
         return(
             <h1>{this.props.compiler} and {this.props.framework}</h1>
         )
     }
 }
-

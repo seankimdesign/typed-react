@@ -1,8 +1,18 @@
+var path = require('path');
+var webpack = require('webpack');
+
 module.exports = {
-    entry: "./src/index.tsx",
+
+    entry: [
+		"react-hot-loader/patch",
+		"webpack-dev-server/client?http://localhost:3000",
+		"webpack/hot/only-dev-server",
+        "./src/index.tsx"
+    ],
     output:{
         filename: "bundle.js",
-        path: __dirname + "/dist"
+        path: __dirname + "/dist",
+		publicPath: "/dist/"
     },
     devtool: "source-map",
     resolve:{
@@ -17,5 +27,16 @@ module.exports = {
     externals:{
         "react": "React",
         "react-dom":"ReactDOM"
-    }
+    },
+	plugins: [
+		new webpack.HotModuleReplacementPlugin(),
+		new webpack.NamedModulesPlugin(),
+		new webpack.NoEmitOnErrorsPlugin(),
+	],
+	devServer: {
+		host: 'localhost',
+		port: 3000,
+		historyApiFallback: true,
+		hot: true,
+	},
 }

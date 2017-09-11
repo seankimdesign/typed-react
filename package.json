@@ -4,6 +4,8 @@
   "description": "Typescript based react application",
   "main": "index.js",
   "scripts": {
+    "lint": "tslint --fix -c tslint.json 'src/**/*{.ts,.tsx}'",
+    "start": "if npm run lint --silent ; then node_modules/.bin/webpack-dev-server || true ; else echo '> Cannot compile due to tslint errors\r\n' ; fi ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "seankimdesign",
@@ -11,12 +13,21 @@
   "dependencies": {
     "@types/react": "^16.0.5",
     "@types/react-dom": "^15.5.4",
+    "@types/react-redux": "^5.0.8",
     "react": "^15.6.1",
-    "react-dom": "^15.6.1"
+    "react-dom": "^15.6.1",
+    "react-hot-loader": "^3.0.0-beta.7",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
+    "redux-saga": "^0.15.6"
   },
   "devDependencies": {
     "awesome-typescript-loader": "^3.2.3",
     "source-map-loader": "^0.2.1",
-    "typescript": "^2.5.2"
+    "tslint": "^5.7.0",
+    "tslint-react": "^3.2.0",
+    "typescript": "^2.5.2",
+    "webpack": "^3.5.6",
+    "webpack-dev-server": "^2.7.1"
   }
 }
