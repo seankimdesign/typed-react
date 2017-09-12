@@ -1,6 +1,6 @@
 import { Action } from "flux-standard-action"
 
-export type PersonAction = "FETCH_PERSON" | "REQUEST_PERSON" | "RECEIVE_PERSON" | "FAILED_PERSON"
+type PersonAction = "FETCH_PERSON" | "REQUEST_PERSON" | "RECEIVE_PERSON" | "FAILED_PERSON"
 
 export const FETCH_PERSON: PersonAction = "FETCH_PERSON"
 export const REQUEST_PERSON: PersonAction = "REQUEST_PERSON"
