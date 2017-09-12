@@ -1,11 +1,11 @@
 import { all, put, takeEvery } from "redux-saga/effects"
 
 import { FETCH_PERSON, receivePerson, requestPerson } from "../actions/person"
-import { fetchPerson } from "../api/person"
+import { fetchPersonAPI } from "../api/person"
 
 export function* fetchPersonSaga() {
 	yield put(requestPerson())
-	const person = yield fetchPerson()
+	const person = yield fetchPersonAPI()
 	yield put(receivePerson(person))
 }
 
