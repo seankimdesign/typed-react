@@ -11,27 +11,30 @@ export interface PersonFSA extends Action<any>{
 	type: PersonAction
 	payload?: {
 		name: string,
-		picture: string
+		picture: string,
+		id: number
 	}
 }
 
-export interface PersonIncoming{
+export interface PersonProps{
 	name: string,
 	picture: string
 }
 
-export const fetchPerson = () => ({
-	type: FETCH_PERSON
+export const fetchPerson = (id: number) => ({
+	type: FETCH_PERSON,
+	id
 })
 
 export const requestPerson = (): PersonFSA => ({
 	type: REQUEST_PERSON
 })
 
-export const receivePerson = (person: PersonIncoming): PersonFSA => ({
+export const receivePerson = (person: PersonProps, id: number): PersonFSA => ({
 	type: RECEIVE_PERSON,
 	payload: {
 		name: person.name,
-		picture: person.picture
+		picture: person.picture,
+		id: id
 	}
 })

@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "@types/flux-standard-action": "^0.5.31",
+    "@types/node": "^8.0.28",
     "@types/react": "^16.0.5",
     "@types/react-dom": "^15.5.4",
     "@types/react-redux": "^5.0.8",

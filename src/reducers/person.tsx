@@ -1,15 +1,14 @@
-import { RECEIVE_PERSON, REQUEST_PERSON, FAILED_PERSON, PersonFSA } from "../actions/person"
+import { RECEIVE_PERSON, REQUEST_PERSON, FAILED_PERSON, PersonFSA, PersonProps } from "../actions/person"
+import {isBlockScopeBoundary} from "tslint"
 
 export interface PersonState{
-	name: string,
-	picture: string,
+	people: Array<{ id: number, props: PersonProps }>
 	error: Error,
 	fetching: boolean
 }
 
 const defaultState: PersonState = {
-	name: null,
-	picture: null,
+	people: [],
 	error: null,
 	fetching: false
 }
@@ -23,12 +22,19 @@ const person = (state: PersonState = defaultState, action: PersonFSA): PersonSta
 				error: null
 			}
 		case RECEIVE_PERSON:
+			const people = state.people.filter((singlePerson) => singlePerson.id !== action.payload.id)
+			people.push({
+				props: {
+					name: action.payload.name,
+					picture: action.payload.picture
+				},
+				id: action.payload.id
+			})
 			return{
 				...state,
 				fetching: false,
 				error: null,
-				name: action.payload.name,
-				picture: action.payload.picture
+				people
 			}
 		case FAILED_PERSON:
 			return{
@@ -36,6 +42,8 @@ const person = (state: PersonState = defaultState, action: PersonFSA): PersonSta
 				fetching: true,
 				error: null
 			}
+		default:
+			return state
 	}
 }
 

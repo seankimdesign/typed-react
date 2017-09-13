@@ -14,8 +14,11 @@
 	  "one-line": [true, "check-catch", "check-finally", "check-else", "check-open-brace"],
 	  "trailing-comma": false,
 	  "object-literal-sort-keys": false,
+	  "object-literal-shorthand": false,
 	  "ordered-imports": false,
-	  "no-submodule-imports": false
+	  "no-submodule-imports": false,
+	  "no-console": false,
+	  "jsx-no-lambda": false
 	},
   "rulesDirectory": []
 }
