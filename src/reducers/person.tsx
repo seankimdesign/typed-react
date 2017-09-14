@@ -1,9 +1,9 @@
-import { RECEIVE_PERSON, REQUEST_PERSON, FAILED_PERSON, PersonFSA, PersonProps } from "../actions/person"
-import {isBlockScopeBoundary} from "tslint"
+import { RECEIVE_PERSON, REQUEST_PERSON, FAILED_PERSON, PersonFSA } from "../actions/person"
+import { PersonProps } from "../components/Person"
 
 export interface PersonState{
 	people: Array<{ id: number, props: PersonProps }>
-	error: Error,
+	error: Error
 	fetching: boolean
 }
 

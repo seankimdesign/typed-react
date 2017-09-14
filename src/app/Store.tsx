@@ -6,7 +6,9 @@ import reducers from "../reducers"
 import saga from "./Saga"
 
 const sagaMiddleware = createSaga()
+// Redux store browser extension support
 const composeEnhancers = composeWithDevTools({})
+
 const store = createStore(
 	reducers,
 	composeEnhancers(

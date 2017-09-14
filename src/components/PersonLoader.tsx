@@ -1,26 +1,40 @@
+/*
+ * PersonLoader component uses the Button basic component and Person component to control the
+ * flow of request-response data into their correct components
+ */
+
 import * as React from "react"
 
+import { PersonParams } from "../actions/person"
+
+// Utility functions imported as `_`
+import * as _ from "../util"
 import { Panel, Button } from "."
-import Person, { PersonProps } from "./Person"
+import Person from "./Person"
 
 export interface PersonLoaderProps{
 	person: any
 	buttonText: string
-	onClick: any
-	id: number
+	onClick: any // TODO: more restrictive type should be defined
+	id: number // TODO: enforce uniqueness
+	params: PersonParams
 }
 
 export default class PersonLoader extends React.Component<PersonLoaderProps, {}>{
 
 	public render() {
+
+		const notFoundName = "Person is not loaded"
+		const notFoundImg = ""
 		const {person, id} = this.props
+		const params = {...this.props.params}
 		const ownPerson = person.filter((singlePerson: any) => singlePerson.id === id)[0]
-		const personName = (ownPerson && ownPerson.props && ownPerson.props.name.first) || "Person is not loaded"
-		const personPicture = (ownPerson && ownPerson.props && ownPerson.props.picture.large) || "Person is not loaded"
+		const personName = (ownPerson && ownPerson.props && _.capitalize(ownPerson.props.name.first)) || notFoundName
+		const personPicture = (ownPerson && ownPerson.props && ownPerson.props.picture.large) || notFoundImg
 		return(
 			<Panel>
 				<Person name={personName} picture={personPicture}/>
-				<Button onClick={() => this.props.onClick(id)}>{this.props.buttonText}</Button>
+				<Button onClick={() => this.props.onClick(id, params)}>{this.props.buttonText}</Button>
 			</Panel>
 		)
 	}

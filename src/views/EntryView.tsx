@@ -1,6 +1,6 @@
 import {connect, Dispatch} from "react-redux"
 
-import { fetchPerson } from "../actions/person"
+import { fetchPerson, PersonParams } from "../actions/person"
 import EntryPage from "../pages/EntryPage"
 
 const mapState = (state: any) => ({
@@ -8,14 +8,14 @@ const mapState = (state: any) => ({
 })
 
 const mapDispatch = (dispatch: Dispatch<any>) => ({
-	doFetchPerson: (id: number) => {
-		dispatch(fetchPerson(id))
+	doFetchPerson: (id: number, params: PersonParams) => {
+		dispatch(fetchPerson(id, params))
 	}
 })
 
 const EntryView = connect(
 	mapState,
 	mapDispatch
-)(EntryPage as any)
+)(EntryPage as any) // TODO: Resolve type ambiguity
 
 export default EntryView
