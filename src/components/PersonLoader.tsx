@@ -11,6 +11,7 @@ import { PersonParams } from "../actions/person"
 import * as _ from "../util"
 import { Panel, Button } from "."
 import Person from "./Person"
+import $ from "../style"
 
 const ProfileImage =  require("../../static/img/profile.png")
 
@@ -34,7 +35,7 @@ export default class PersonLoader extends React.Component<PersonLoaderProps, {}>
 		const personName = (ownPerson && ownPerson.props && _.capitalize(ownPerson.props.name.first)) || notFoundName
 		const personPicture = (ownPerson && ownPerson.props && ownPerson.props.picture.large) || ProfileImage
 		return(
-			<Panel darker={true} child={true}>
+			<Panel darker={true} column={true}>
 				<Person name={personName} picture={personPicture}/>
 				<Button onClick={() => this.props.onClick(id, params)}>{this.props.buttonText}</Button>
 			</Panel>

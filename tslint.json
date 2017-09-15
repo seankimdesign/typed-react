@@ -22,6 +22,7 @@
 	  "no-console": false,
       "no-var-requires": false,
 	  "no-duplicate-imports": false,
+	  "max-line-length": false,
 	  "jsx-no-lambda": false,
 	  "jsx-no-multiline-js": false,
 	  "jsx-no-bind": false

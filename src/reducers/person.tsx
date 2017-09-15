@@ -1,4 +1,4 @@
-import { RECEIVE_PERSON, REQUEST_PERSON, FAILED_PERSON, PersonFSA } from "../actions/person"
+import {RECEIVE_PERSON, REQUEST_PERSON, FAILED_PERSON, PersonFSA, RESET_PERSON} from "../actions/person"
 import { PersonProps } from "../components/Person"
 
 export interface PersonState{
@@ -35,6 +35,11 @@ const person = (state: PersonState = defaultState, action: PersonFSA): PersonSta
 				fetching: false,
 				error: null,
 				people
+			}
+		case RESET_PERSON:
+			return{
+				...state,
+				people: []
 			}
 		case FAILED_PERSON:
 			return{

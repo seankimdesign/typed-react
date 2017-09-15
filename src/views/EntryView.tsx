@@ -1,6 +1,6 @@
-import {connect, Dispatch} from "react-redux"
+import {connect, Dispatch } from "react-redux"
 
-import { fetchPerson, PersonParams } from "../actions/person"
+import { fetchPerson, resetPerson, PersonParams } from "../actions/person"
 import EntryPage from "../pages/EntryPage"
 
 const mapState = (state: any) => ({
@@ -10,6 +10,9 @@ const mapState = (state: any) => ({
 const mapDispatch = (dispatch: Dispatch<any>) => ({
 	doFetchPerson: (id: number, params: PersonParams) => {
 		dispatch(fetchPerson(id, params))
+	},
+	doResetPersons: () => {
+		dispatch(resetPerson())
 	}
 })
 
