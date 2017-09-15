@@ -5,12 +5,17 @@
 
 import * as React from "react"
 
+import styled from "../style/styled-components"
+import $ from "../style"
+
+console.log(styled as any)
+
 // Heading component - size prop is optional
 export interface Heading{
 	size?: "L" | "M" | "S"
 	children: string
 }
-export const Heading: React.SFC<Heading> = (props) => {
+export const PlainHeading: React.SFC<Heading> = (props) => {
 	let fontSize = 30
 	switch (props.size) {
 		case "L":
@@ -22,21 +27,35 @@ export const Heading: React.SFC<Heading> = (props) => {
 	return <h1 style={{fontSize}}>{props.children}</h1>
 }
 
+export const Heading = styled(PlainHeading)`
+	color: ${$.primaryColor};
+`
+
 // Text component
 export interface Text{
 	children: string
 }
-export const Text: React.SFC<Heading> = (props) => {
+export const PlainText: React.SFC<Heading> = (props) => {
 	return <p>{props.children}</p>
 }
+export const Text: any = styled(PlainHeading)`
+	color: ${$.textColor};
+	font-size: ${$.fontSize};
+`
 
 // Panel component
 export interface Panel{
 	children: JSX.Element[]
 }
-export const Panel: React.SFC<Panel> = (props) => {
+export const PlainPanel: React.SFC<Panel> = (props) => {
 	return <div>{props.children}</div>
 }
+export const Panel: any = styled(PlainHeading)`
+	background-color: ${$.lightGray};
+	border: 1px solid ${$.darkGray};
+	border-radius: 4px;
+	margin: ${$.spaceV * 2} ${$.spaceH * 2}
+`
 
 // Button component - display string must be passed in as a child
 export interface Button{

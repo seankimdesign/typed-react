@@ -19,7 +19,7 @@ class EntryPage extends React.Component{
 		const { person } = (this.props as any)
 		return(
 			<Panel>
-				<Heading size="S">Typed React Example</Heading>
+				<Heading size="M">Typed React Example</Heading>
 				<Text>To do: add Jest / Enzyme testing. add styles via Styled-Components.</Text>
 				<Panel>
 					<PersonLoader

@@ -18,6 +18,7 @@
 	  "ordered-imports": false,
 	  "no-submodule-imports": false,
 	  "no-console": false,
+	  "no-duplicate-imports": false,
 	  "jsx-no-lambda": false,
 	  "jsx-no-multiline-js": false,
 	  "jsx-no-bind": false
