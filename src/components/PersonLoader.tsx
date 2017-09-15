@@ -12,6 +12,8 @@ import * as _ from "../util"
 import { Panel, Button } from "."
 import Person from "./Person"
 
+const ProfileImage =  require("../../static/img/profile.png")
+
 export interface PersonLoaderProps{
 	person: any
 	buttonText: string
@@ -30,9 +32,9 @@ export default class PersonLoader extends React.Component<PersonLoaderProps, {}>
 		const params = {...this.props.params}
 		const ownPerson = person.filter((singlePerson: any) => singlePerson.id === id)[0]
 		const personName = (ownPerson && ownPerson.props && _.capitalize(ownPerson.props.name.first)) || notFoundName
-		const personPicture = (ownPerson && ownPerson.props && ownPerson.props.picture.large) || notFoundImg
+		const personPicture = (ownPerson && ownPerson.props && ownPerson.props.picture.large) || ProfileImage
 		return(
-			<Panel>
+			<Panel darker={true} child={true}>
 				<Person name={personName} picture={personPicture}/>
 				<Button onClick={() => this.props.onClick(id, params)}>{this.props.buttonText}</Button>
 			</Panel>

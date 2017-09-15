@@ -1,8 +1,8 @@
 import * as React from "react"
 
-import { Heading, Text, Panel } from "../components"
+import { Heading, Text, Panel, Page } from "../components"
 import PersonLoader from "../components/PersonLoader"
-import {PersonParams} from "../actions/person"
+import { PersonParams } from "../actions/person"
 
 class EntryPage extends React.Component{
 	constructor(){
@@ -18,8 +18,8 @@ class EntryPage extends React.Component{
 		// TODO: Resolve `this.props` type mismatch by addressing EntryView.tsx
 		const { person } = (this.props as any)
 		return(
-			<Panel>
-				<Heading size="M">Typed React Example</Heading>
+			<Page>
+				<Heading size="L">Typed React Example</Heading>
 				<Text>To do: add Jest / Enzyme testing. add styles via Styled-Components.</Text>
 				<Panel>
 					<PersonLoader
@@ -61,7 +61,7 @@ class EntryPage extends React.Component{
 						}}
 					/>
 				</Panel>
-			</Panel>
+			</Page>
 		)
 	}
 }

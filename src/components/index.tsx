@@ -4,64 +4,99 @@
  */
 
 import * as React from "react"
+import { css } from "glamor"
 
-import styled from "../style/styled-components"
 import $ from "../style"
 
-console.log(styled as any)
+const defaultFont = $.font()
+
+// Text component
+interface Text{
+	children: string
+}
+const textStyle = css({
+	color: $.textColor
+})
+export const Text: React.SFC<Text> = (props) => {
+	return <p {... defaultFont} {...textStyle}>{props.children}</p>
+}
 
 // Heading component - size prop is optional
-export interface Heading{
+interface Heading{
 	size?: "L" | "M" | "S"
 	children: string
 }
-export const PlainHeading: React.SFC<Heading> = (props) => {
-	let fontSize = 30
+const headingStyle = css({
+	color: $.primaryColor
+})
+export const Heading: React.SFC<Heading> = (props) => {
+	let dynamicSize = $.headingSizeMedium
 	switch (props.size) {
 		case "L":
-			fontSize = 36
+			dynamicSize = $.headingSizeLarge
 			break
 		case "S":
-			fontSize = 24
+			dynamicSize = $.headingSizeSmall
 	}
-	return <h1 style={{fontSize}}>{props.children}</h1>
+	const dynamicSizeStyle = css({fontSize: dynamicSize})
+	return <h1 {...defaultFont} {...headingStyle} {...dynamicSizeStyle}>{props.children}</h1>
 }
-
-export const Heading = styled(PlainHeading)`
-	color: ${$.primaryColor};
-`
-
-// Text component
-export interface Text{
-	children: string
-}
-export const PlainText: React.SFC<Heading> = (props) => {
-	return <p>{props.children}</p>
-}
-export const Text: any = styled(PlainHeading)`
-	color: ${$.textColor};
-	font-size: ${$.fontSize};
-`
 
 // Panel component
-export interface Panel{
-	children: JSX.Element[]
+interface Panel{
+	children: JSX.Element[] | JSX.Element,
+	darker?: boolean,
+	child?: boolean
 }
-export const PlainPanel: React.SFC<Panel> = (props) => {
-	return <div>{props.children}</div>
+const panelBaseRules = {
+	"backgroundColor": $.lightGray,
+	"borderRadius": `${$.roundedCorner}px`,
+	"display": "flex"
 }
-export const Panel: any = styled(PlainHeading)`
-	background-color: ${$.lightGray};
-	border: 1px solid ${$.darkGray};
-	border-radius: 4px;
-	margin: ${$.spaceV * 2} ${$.spaceH * 2}
-`
+const panelDarkerRules = {
+	"backgroundColor": $.mediumGray,
+	"border": `1px solid ${$.darkGray}`,
+}
+const panelChildRules = {
+	"display": "block"
+}
+let panelStyle: any = panelBaseRules
+export const Panel: React.SFC<Panel> = (props) => {
+	if (props.darker){
+		panelStyle = {...panelStyle, ...panelDarkerRules}
+	}
+	if (props.child){
+		panelStyle = {...panelStyle, ...panelChildRules}
+	}
+	return <div {...css(panelStyle)} {...$.margin(2)} {...$.padding()}>{props.children}</div>
+}
+
+// Page component
+interface Page{
+	children: JSX.Element[] | JSX.Element
+}
+const pageStyle = css({
+	"backgroundColor": $.offWhite,
+	"boxSizing": "border-box",
+	"minHeight": "100vh"
+})
+export const Page: React.SFC<Panel> = (props) => {
+	return <div {...pageStyle} {...$.padding(8)}>{props.children}</div>
+}
 
 // Button component - display string must be passed in as a child
-export interface Button{
+interface Button{
 	children: string
 	onClick: any // TODO: more restrictive type should be defined
 }
+const buttonStyle = css({
+	"backgroundColor": $.primaryColor,
+	"color": $.white,
+	":hover": {
+		"backgroundColor": $.darker($.primaryColor),
+		"color": $.offWhite,
+	}
+})
 export const Button: React.SFC<Button> = (props) => {
-	return <button onClick={props.onClick}>{props.children}</button>
+	return <button {...buttonStyle} onClick={props.onClick}>{props.children}</button>
 }
